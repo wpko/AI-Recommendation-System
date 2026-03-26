@@ -1,0 +1,9 @@
+sentence-transformers
+pandas
+scikit-learn
+rapidfuzz
+numpy
+fastapi
+uvicorn
+pydantic
+streamlit
