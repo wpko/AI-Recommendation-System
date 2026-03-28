@@ -38,9 +38,18 @@ def find_closest_title(user_input):
         return None
     return match
 
+def is_scifi(genre):
+    genre = genre.lower()
+    return (
+        "sci-fi" in genre or
+        "science-fiction" in genre or
+        "science fiction" in genre
+    )
+
 #8.Recommendation Function
 def recommend(movie_title,top_n=10):
     closest_title = find_closest_title(movie_title)
+    
     if closest_title is None:
         return ['Movie is not found']
     print(f"Did you mean: {closest_title}")
@@ -51,17 +60,28 @@ def recommend(movie_title,top_n=10):
         embeddings,
     ).flatten()
     #filter
-    target_genre = data.loc[idx, "genre"].lower()
-
-    sim_scores = [
+    sim_scores = sim_scores = [
         (i, s) for i, s in enumerate(sim_scores)
-        if s > 0.35 
-        and i != idx 
-        and any(g in data.loc[i, "genre"].lower() for g in target_genre.split(","))
+        if s > 0.3   # 🔥 reduce threshold
+        and i != idx
+        and is_scifi(data.loc[i, "genre"])
+        and "fantasy" not in data.loc[i,"genre"].lower()
     ]
+    if len(sim_scores) == 0:
+        sim_scores = [
+            (i,s) for i, s in enumerate(sim_scores)
+            if s>0.25 and i!=idx 
+        ]
     #Sort
     sim_scores = sorted(sim_scores,key=lambda x:x[1], reverse=True)
-    sim_scores = sim_scores[1:top_n+1]
-    movie_indices = [i[0] for i in sim_scores]
-    return data['Title'].iloc[movie_indices].tolist()
+    sim_scores = sim_scores[:min(top_n, len(sim_scores))]
+    
+    #return title + score
+    return[
+        {
+            'title': data['Title'].iloc[i],
+            'score': round(float(s),2)
+        }
+        for i, s in sim_scores
+    ]
 
