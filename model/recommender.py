@@ -2,8 +2,16 @@ import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from rapidfuzz import process
 import numpy as np
+
+import os
 #load embeddings
-embeddings = np.load("embeddings.npy")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+data_path = os.path.join(BASE_DIR, "..", "data", "dataset.csv")
+embedding_path = os.path.join(BASE_DIR, "..", "embeddings.npy")
+
+data = pd.read_csv(data_path)
+embeddings = np.load(embedding_path)
 
 #1.Load data
 data = pd.read_csv('data/dataset.csv')
