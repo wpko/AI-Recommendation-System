@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-API_URL = "http://127.0.0.1:8000"
+API_URL = "https://ai-recommendation-system-fastapi.onrender.com"
 st.set_page_config(page_title="Movie Recommender", page_icon="🎬",layout="wide")
 st.title("🎬 AI Movie Recommender")
 st.markdown("Find similar movies instantly using AI")
