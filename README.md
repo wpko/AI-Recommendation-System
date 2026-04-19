@@ -5,6 +5,16 @@ This project suggests similar movies based on semantic similarity using **AI emb
 
 ---
 
+## 🚀 Live Demo
+
+- 🌐 Streamlit App: (https://ai-recommendation-system-streamlit.onrender.com)
+- ⚡ FastAPI Backend: (https://ai-recommendation-system-fastapi.onrender.com)
+
+## ⚠️ **Important:** Please run the FastAPI backend first before using the Streamlit app.  
+## Otherwise, the app will not return any responses.
+
+---
+
 ## 🚀 Features
 
 * 🔍 Smart movie search with auto-suggestions
@@ -130,6 +140,7 @@ streamlit run app.py
 
 👉 UI will open in browser automatically
 
+
 ---
 
 ## 🧪 Example Usage
@@ -144,7 +155,19 @@ streamlit run app.py
 
 ## 📸 Screenshots
 
-*(Add your UI screenshots here)*
+### Streamlit Screenshots
+<p align="center">
+  <img src="images/recom_streamlit_1.png" width="300"/>
+  <img src="images/recom_streamlit_2.png" width="300"/>
+  <img src="images/recom_streamlit_3.png" width="300"/>
+  <img src="images/recom_streamlit_4.png" width="300"/>
+  <img src="images/recom_streamlit_5.png" width="300"/>
+</p>
+
+### FastAPI Screenshot
+<p align="center">
+  <img src="images/recom_fastapi.png" width="600"/>
+</p>
 
 ---
 
